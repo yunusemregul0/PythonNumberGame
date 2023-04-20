@@ -1,3 +1,4 @@
+#Yunus Emre Gül
 import sys
 
 
@@ -105,7 +106,6 @@ def sutun_bos_mu(sayilar_matrisi):
                 temp = sayilar_matrisi[i][k]
                 sayilar_matrisi[i][k] = sayilar_matrisi[i][k - 1]
                 sayilar_matrisi[i][k - 1] = temp
-
     return sayilar_matrisi
 
 #kullanicinin girdigi degerleri azaltmak gerekli bir islem
@@ -136,7 +136,7 @@ def oyun_oynat(sayilar_matrisi,output_adi):
                 new_matrix = komsulari_kaldir(new_matrix, satir, sutun)
                 bos_sayisi = sayilari_tasi_satir(new_matrix)
                 bos_sayisi_sonra=sum(satir.count("") for satir in new_matrix)
-                sutun_bos_mu(new_matrix)
+                new_matrix=sutun_bos_mu(new_matrix)
                 try:
                     new_puan += puan_hesapla(value, bos_sayisi_sonra-bos_sayisi_once)
                 except TypeError:
