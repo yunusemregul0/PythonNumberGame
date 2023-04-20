@@ -79,17 +79,20 @@ def sayilari_tasi_satir(sayilar_matrisi):
     bos_sayisi = 0
     bos_satirlar = []
    # puan hesaplama isleminde kullanacagimiz bos sayisi
-    for sutun in range(len(sayilar_matrisi[0])):
-        for satir in range(len(sayilar_matrisi)):
-            if sayilar_matrisi[satir][sutun] == "":
-                bos_sayisi += 1
-                bos_satirlar.insert(0, satir)  # ekleme yaparken ilk bulunan elemani listenin başına ekliyoruz ki sutunlar duzgunce asagiya kayabilsin
-        if bos_sayisi > 0:
-            for i in range(bos_sayisi):
-                for j in range(len(bos_satirlar)):
-                    if bos_satirlar[j] > 0 and sayilar_matrisi[bos_satirlar[j] - 1][sutun] != "":
-                        sayilar_matrisi[bos_satirlar[j]][sutun], sayilar_matrisi[bos_satirlar[j] - 1][sutun] = sayilar_matrisi[bos_satirlar[j] - 1][sutun], sayilar_matrisi[bos_satirlar[j]][sutun]
-
+    for satir1 in range(len(sayilar_matrisi)): ##satirlari tekrar kontrol etsin
+        for sutun in range(len(sayilar_matrisi[0])):
+            for satir in range(len(sayilar_matrisi)):
+                if sayilar_matrisi[satir][sutun] == "":
+                    bos_sayisi += 1
+                    bos_satirlar.insert(0, satir)  # ekleme yaparken ilk bulunan elemani listenin başına ekliyoruz ki sutunlar duzgunce asagiya kayabilsin
+            if bos_sayisi > 0:
+                for i in range(bos_sayisi):
+                    for j in range(len(bos_satirlar)):
+                        if bos_satirlar[j] > 0 and sayilar_matrisi[bos_satirlar[j] - 1][sutun] != "":
+                            sayilar_matrisi[bos_satirlar[j]][sutun], sayilar_matrisi[bos_satirlar[j] - 1][sutun] = sayilar_matrisi[bos_satirlar[j] - 1][sutun], sayilar_matrisi[bos_satirlar[j]][sutun]
+                bos_sayisi=0
+                bos_satirlar=[]
+            
     return bos_sayisi
 
 #sutun bossa sola kaydirma islemini gerceklestir
@@ -161,4 +164,4 @@ if len(sys.argv) > 2:
     sayilar_matrisi = dosyadan_oku(input_adi)
     oyun_oynat(sayilar_matrisi,output_adi)
 else:
-    print("Dosya adı belirtilmedi. Konsola gidip varsayilan matrix girdisi input.txt argumani veriniz.")
+    print("Dosya adı belirtilmedi. Konsola gidip varsayilan matrix girdisi input.txt ve matrix c argumani veriniz.")
